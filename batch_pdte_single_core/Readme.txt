@@ -2,7 +2,7 @@
 ###
 
 ## cmp_bench
-cd ours_pdte_single_core
+cd batch_pdte_single_core
 
 cd cmp_bench
 mkdir build
