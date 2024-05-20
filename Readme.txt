@@ -1,5 +1,5 @@
 
-# Shoud install "seal" from https://github.com/microsoft/SEAL first
+# Shoud install "seal 4.1.1 " from https://github.com/microsoft/SEAL first
 
 # Please follow the compilation command of the following file to get the tabular data in the paper:
 
@@ -19,5 +19,5 @@ sortinghat_pdte_single_core/Readme.txt
    "sortinghat_pdte_single_core" from 
    https://github.com/KULeuven-COSIC/SortingHat
 
-   We only made modifications to the input and output, which did not affect the main performance, to compare with our solution.
+   To compare with our solution, we only made modifications to the input and output, which did not affect the main performance.
 
