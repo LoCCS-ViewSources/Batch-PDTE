@@ -2,7 +2,7 @@
 ###
 
 ## cmp_bench
-cd level_up_pdte_single_core
+cd level_up_pdte_multi_core
 
 cd cmp_bench
 g++ -o cmp -O3 cmp_bench.cpp utils.cpp -I /usr/local/include/SEAL-4.1 -lseal-4.1

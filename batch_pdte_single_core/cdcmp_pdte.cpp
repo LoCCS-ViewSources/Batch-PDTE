@@ -165,7 +165,7 @@ int main(int argc, char* argv[]){
         leaf_vec_plain.push_back(pt);
     }
 
-    //初始化随机数
+    
     std::random_device rd;  
     std::mt19937 gen(rd()); 
     std::uniform_int_distribution<> distrib(1, plain_modulus - 1);

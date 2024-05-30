@@ -158,10 +158,6 @@ int main(int argc, char* argv[]){
     start = clock();
     pdte_rdcmp_rec(out1, root, evaluator, gal_keys_server, rlk_server, client_input, one, n, batch_encoder, slot_count, row_count,num_cmps);
     
-    //out1 为 0 1 1 1 1 2 2 2 2 2 2 3 3 3 3 4 共 leaf_num 列 每个密文的同一个插槽位置是结果
-
-    //out1 为 leaf_num 列，其中第一行 中间有一个 0 , 第 num_slots_per_element 行 中间有一个 0 , 与之对应的是同一个叶子的位置。
-
     
 
     vector<uint64_t> leaf_vec;
@@ -180,13 +176,12 @@ int main(int argc, char* argv[]){
     //out2
     //leaf_vec_plain
 
-    //初始化随机数
     std::random_device rd;  
     std::mt19937 gen(rd()); 
     std::uniform_int_distribution<> distrib(1, plain_modulus - 1);
     
     vector<vector<Plaintext>> salt;//salt
-    //2 行 leaf_num 个
+
     for(int i = 0; i <  2 ; i++){
         vector<Plaintext> temp;
         for(int j = 0;j < leaf_num; j++){
@@ -204,7 +199,7 @@ int main(int argc, char* argv[]){
         evaluator->add_plain_inplace(out[1][i],leaf_vec_plain[i]);
     }
 
-    //去掉行相关性。
+
     if(clr){
         cout<<"clr process"<<endl;
         out = rdcmp_pdte_clear_line_relation(batch_encoder,evaluator,out,leaf_num,data_m,slot_count);
@@ -224,7 +219,7 @@ int main(int argc, char* argv[]){
     vector<vector<uint64_t>> ans0, ans1;
     for(int j=0;j<out[0].size();j++){
         vector<uint64_t> res0, res1;
-        Plaintext pt;//解密得到结果
+        Plaintext pt;
         decryptor->decrypt(out[0][j], pt);
         batch_encoder->decode(pt, res0);
         decryptor->decrypt(out[1][j], pt);
