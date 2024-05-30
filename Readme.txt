@@ -19,5 +19,5 @@ sortinghat_pdte_single_core/Readme.txt
    "sortinghat_pdte_single_core" from 
    https://github.com/KULeuven-COSIC/SortingHat
 
-   To compare with our solution, we only made modifications to the input and output, which did not affect the main performance.
+   Only used to compare with our solution, we made modifications to the input and output, which did not affect the main performance.
 
