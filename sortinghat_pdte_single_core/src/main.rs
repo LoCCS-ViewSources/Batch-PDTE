@@ -1,7 +1,31 @@
+/*
+
+MIT License
+
+Copyright (c) 2024 LoCCS - ViewSources
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
+
 use std::fs;
 use std::path::Path;
-
-
 use sortinghat::decision_tree::*;
 use sortinghat::Scalar;
 use std::time::Instant;
@@ -15,11 +39,11 @@ fn parse_csv(path: &Path) -> Vec<Vec<usize>> {
     let x_test_f = fs::File::open(path).expect("csv file not found, consider using --artificial");
 
     let mut x_test: Vec<Vec<usize>> = vec![];
-    let mut x_train_rdr = csv::Reader::from_reader(x_test_f);//逐行读取，然后res为某一行。
+    let mut x_train_rdr = csv::Reader::from_reader(x_test_f);
     for res in x_train_rdr.records() {
-        let record = res.unwrap();//读取当前行的内容，并将其存储在 record 中。unwrap() 用于处理可能的错误。
+        let record = res.unwrap();
         let row = record.iter().map(|s| {
-            s.parse().unwrap()//将字符串变为usize
+            s.parse().unwrap()
         }).collect();
         x_test.push(row);
     }
@@ -83,7 +107,7 @@ fn main() {
     println!("count depth = {}",root.count_depth());
 
     println!("server generater the parameters..");
-    let ctx_server = Context::default();//生成默认参数
+    let ctx_server = Context::default();
     let mut buffers_server = ctx_server.gen_fourier_buffers();
 
     println!("server start to private transform..");

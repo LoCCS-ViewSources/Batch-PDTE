@@ -1,3 +1,29 @@
+
+/*
+MIT License
+
+Copyright (c) 2022 KU Leuven - COSIC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
+
 use std::collections::HashMap;
 use concrete_commons::dispersion::DispersionParameter;
 use concrete_commons::key_kinds::BinaryKeyKind;
@@ -17,7 +43,7 @@ use concrete_core::backends::core::private::math::fft::AlignedVec;
 use num_traits::identities::{One, Zero};
 use crate::*;
 use crate::rgsw::RGSWCiphertext;
-//use serde::{Deserialize, Serialize};//Serialize, Deserialize
+
 #[derive(Debug, Clone)]
 /// An RLWE ciphertext.
 /// It is a wrapper around `GlweCiphertext` from concrete.
@@ -180,7 +206,7 @@ impl RLWECiphertext {
             }
             Polynomial::from_container(t)
         };
-        //Plain.mult(t,self)
+
         let mut poly_buffer = Polynomial::allocate(Scalar::zero(), self.polynomial_size());
         self.update_body_with_mul_with_buf(&t_poly, &mut poly_buffer, buffers);
         self.update_mask_with_mul_with_buf(&t_poly, &mut poly_buffer, buffers);
@@ -1247,7 +1273,7 @@ mod test {
     fn test_fourier_mul() {
         let mut ctx = Context::default();
         let n = ctx.poly_size;
-        let mut buffers = FourierBuffers::new(ctx.poly_size, GlweSize(2));//不用管那么多了，就这样输入就行了。要什么自行车呀。
+        let mut buffers = FourierBuffers::new(ctx.poly_size, GlweSize(2));
         let mut out_fourier = Polynomial::allocate(Scalar::zero(), n);
         let mut out_naive = Polynomial::allocate(Scalar::zero(), n);
 
