@@ -1,3 +1,29 @@
+
+/*
+MIT License
+
+Copyright (c) 2022 KU Leuven - COSIC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
+
 use std::time::Duration;
 use serde::{Deserialize, Serialize};
 use rayon::prelude::*;
@@ -169,7 +195,7 @@ fn eval_node(out: &mut usize, node: &Node, features: &Vec<usize>, b: usize) {
         Node::Internal(node) => {
             match node.op {
                 Op::LEQ => {
-                    if features[node.feature] <= node.threshold {//我说这里为什么相反呢，原来反了两次呢。
+                    if features[node.feature] <= node.threshold {
                         eval_node(out, &node.left, features, b);
                         eval_node(out, &node.right, features, b * (1 - b));
                     } else {
@@ -354,10 +380,6 @@ pub fn encrypt_feature_vector(sk: &RLWESecretKey, vs: &Vec<usize>, ctx: &mut Con
             tmp.push(ct);
         }
         out.push(tmp);
-        //let mut pt2 = PlaintextList::allocate(Scalar::zero(), ctx.plaintext_count());
-        //println!("*pt2[{}]= {:?}",0, pt2);
-        //sk.decrypt_rlwe(& mut pt2, &tmp[0]);
-        //println!("*pt2[{}]= {:?}",0, pt2);
     }
     out
 }
@@ -416,7 +438,7 @@ pub fn decrypt_and_recompose(sk: &RLWESecretKey, cts: &Vec<RLWECiphertext>, ctx:
             1 => bv.push(true),
             _ => panic!("expected binary plaintext"),
         }
-    }  
+    }
     bv.load::<Scalar>()
 }
 

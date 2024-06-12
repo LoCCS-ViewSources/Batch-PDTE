@@ -1,5 +1,5 @@
 
-# Shoud install "seal 4.1.1 " from https://github.com/microsoft/SEAL first
+# Shoud install "seal 4.1.1 " from https://github.com/microsoft/SEAL firstly.
 
 # Please follow the compilation command of the following file to get the tabular data in the paper:
 
